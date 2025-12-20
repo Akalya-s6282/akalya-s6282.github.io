@@ -182,7 +182,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  line-height: 1.6;
+  line-height: 2.6;
   color: var(--text-main);
   gap: 8px; /* light breathing room */
 }
@@ -293,6 +293,11 @@ body {
   #landing {
     height: auto;
     padding: 40px 5%;
+  }
+ #about > div {
+  margin-left: auto;
+  
+
   }
 
   .hero-container {

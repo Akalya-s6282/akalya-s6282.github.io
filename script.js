@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContent = document.querySelector(".main-content");
   const topNav = document.getElementById("topNav");
   const hamburger = document.getElementById("hamburger");
+  const navOverlay = document.getElementById("navOverlay");
+  const mobileNavClose = document.getElementById("mobileNavClose");
+  const mobileBreakpoint = window.matchMedia("(max-width: 768px)");
 
   // Slider
   const slides = document.querySelectorAll(".slide");
@@ -32,22 +35,45 @@ document.addEventListener("DOMContentLoaded", () => {
   // Theme Toggle
   const themeToggle = document.getElementById("themeToggle");
   const themeIcon = document.getElementById("themeIcon");
+  const setThemeIcon = isDark => {
+    themeIcon.innerHTML = isDark
+      ? '<i class="fa-solid fa-sun"></i>'
+      : '<i class="fa-solid fa-moon"></i>';
+  };
 
   // --- Hamburger Menu ---
+  const closeMobileNav = () => {
+    topNav.classList.remove("show");
+    hamburger.classList.remove("active");
+    navOverlay?.classList.remove("show");
+    document.body.classList.remove("nav-open");
+  };
+
   hamburger.addEventListener("click", () => {
-    topNav.classList.toggle("show");
-    hamburger.classList.toggle("active");
+    const isOpen = topNav.classList.toggle("show");
+    hamburger.classList.toggle("active", isOpen);
+    navOverlay?.classList.toggle("show", isOpen);
+    document.body.classList.toggle("nav-open", isOpen);
   });
 
   document.querySelectorAll(".top-nav a").forEach(link => {
     link.addEventListener("click", () => {
-      topNav.classList.remove("show");
-      hamburger.classList.remove("active");
+      closeMobileNav();
     });
   });
 
+  mobileNavClose?.addEventListener("click", closeMobileNav);
+  navOverlay?.addEventListener("click", closeMobileNav);
+
   // --- NAV VISIBILITY LOGIC ---
   const updateNavVisibility = () => {
+    if (mobileBreakpoint.matches) {
+      topNav.style.display = "flex";
+      return;
+    }
+
+    topNav.style.display = "";
+
     const fromTop = mainContent.scrollTop;
     const activeSection = [...sections].find(
       section =>
@@ -69,6 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   updateNavVisibility();
+
+  mobileBreakpoint.addEventListener("change", () => {
+    closeMobileNav();
+    updateNavVisibility();
+  });
 
   // --- SLIDER LOGIC ---
   let index = 0;
@@ -148,13 +179,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- THEME TOGGLE (Sun/Moon) ---
   if (localStorage.getItem("dark-mode") === "true") {
     document.body.classList.add("dark-mode");
-    themeIcon.textContent = "☀️";
   }
+  setThemeIcon(document.body.classList.contains("dark-mode"));
 
   themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     const isDark = document.body.classList.contains("dark-mode");
-    themeIcon.textContent = isDark ? "☀️" : "🌙";
+    setThemeIcon(isDark);
     localStorage.setItem("dark-mode", isDark);
   });
 });
+
+

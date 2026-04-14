@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Akalya | Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/landing.css" />
+    <link rel="stylesheet" href="styles/about.css" />
+    <link rel="stylesheet" href="styles/skills.css" />
+    <link rel="stylesheet" href="styles/projects.css" />
+    <link rel="stylesheet" href="styles/certificates.css" />
+    <link rel="stylesheet" href="styles/contact.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap"
       rel="stylesheet"
@@ -25,29 +32,45 @@
   </head>
 
   <body>
-    <button id="themeToggle" class="theme-toggle">
-      <span id="themeIcon">🌙</span>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+      <span id="themeIcon"><i class="fa-solid fa-moon"></i></span>
     </button>
     <div class="container">
       <main class="main-content">
-        <button id="hamburger" class="hamburger">
-          <span id="ham-icon"><i class="fas fa-bars"></i></span>
+        <button id="hamburger" class="hamburger" aria-label="Toggle navigation menu">
+          <span id="ham-icon"><i class="fa-solid fa-bars"></i></span>
         </button>
+        <div id="navOverlay" class="nav-overlay" aria-hidden="true"></div>
         <header class="top-nav" id="topNav">
-          <a href="#landing">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skill</a>
-          <a href="#projects">Projects</a>
-          <a href="#certificates">Certificates</a>
-          <a href="#contact">Contact</a>
+          <div class="mobile-nav-head">
+            <div class="mobile-nav-profile">
+              <img src="Akalya.jpg" alt="Akalya profile" class="mobile-nav-avatar" />
+              <div>
+                <strong>Akalya S</strong>
+                <span>Software Developer</span>
+              </div>
+            </div>
+            <button id="mobileNavClose" class="mobile-nav-close" aria-label="Close navigation">
+              <i class="fas fa-xmark"></i>
+            </button>
+          </div>
+          <a href="#landing"><i class="fas fa-house"></i><span>Home</span></a>
+          <a href="#about"><i class="fas fa-user"></i><span>About</span></a>
+          <a href="#skills"><i class="fas fa-code"></i><span>Skills</span></a>
+          <a href="#projects"><i class="fas fa-briefcase"></i><span>Projects</span></a>
+          <a href="#certificates"><i class="fas fa-award"></i><span>Certificates</span></a>
+          <a href="#contact"><i class="fas fa-envelope"></i><span>Contact</span></a>
+          <div class="mobile-nav-footer">
+            <a href="#contact"><i class="fas fa-paper-plane"></i><span>Contact Me</span></a>
+          </div>
         </header>
 
         <!-- Landing Section -->
        <section id="landing" class="section active">
   <div class="hero-container">
     <div class="hero-text">
-      <h1 class="fancy_name">Akalya</h1>
-      <p class="home-desc">Web Developer | Python Developer | Learner</p>
+      <h1 class="fancy_name">Akalya S</h1>
+      <p class="home-desc">Software Developer | Accessibility-Focused Builder | Community Lead</p>
     </div>
 
     <div class="hero-photo">
@@ -62,48 +85,53 @@
           <div class="about-card">
             <h2>About Me</h2>
             <p>
-              A proactive and curious learner passionate about project
-              development and growth. I embrace challenges with a positive
-              approach and view every mistake as an opportunity to learn.
+              Software developer and B.Tech ECE student from Ernakulam, Kerala,
+              with hands-on experience building accessible products and
+              community-first tech initiatives. I enjoy turning practical ideas
+              into useful tools, especially in web development, automation, and
+              accessibility.
             </p>
           </div>
         
           <div class="leadership">
-            <h2>Leadership</h2>
-            <h3>Campus lead - BuilderClan</h3>
+            <h2>Highlights</h2>
+            <h3>Accessibility App Prototype</h3>
             <p>
-              Lead of a tech community and co-ordinated hackathons and programs
-              related to it.
+              Built an accessibility app prototype with eye-blink keyboard and
+              voice mode support to help people with paralysis use smartphones.
             </p>
 
-            <h3>Women In Tech - TinkerHub</h3>
+            <h3>Ignite Kerala Finalist</h3>
             <p>
-              Coordinated Tinker-hack, an event to empower women by helping them
-              gain confidence.
+              Selected as a finalist in Ignite Kerala from a large applicant
+              pool for the accessibility project.
             </p>
 
-            <h3>Misaal Winner Oasis</h3>
+            <h3>BuilderClan Operations Lead</h3>
             <p>
-              Qualified for leadership workshop and military training. Completed
-              L1 workshop based on self-development.
+              Developed a Discord onboarding and referral bot adopted by more
+              than 250 members and used to reduce manual moderation work.
             </p>
 
-            <h3>NSS Volunteer Secretary</h3>
-            <p>Coordinated many activities as part of NSS.</p>
+            <h3>Community Leadership</h3>
+            <p>
+              Led BuilderClan campus activities and supported Women in Tech,
+              TinkerHub events including TinkerHack and EduQuest.
+            </p>
           </div>
         </section>
 
         <!-- Skills Section -->
        <!-- Skills Section -->
 <section id="skills" class="section">
-  <h2 class="section-title">Skills & Experience</h2>
+  <h2 class="section-title">Skills & Expertise</h2>
 
-  <div class="skill-container" ">
+  <div class="skill-container">
     
     <!-- Programming Foundations -->
     <!-- Programming Foundations -->
 <div class="skill-card">
-  <h3>Programming Foundations</h3>
+  <h3>Programming</h3>
   <div class="icon-row">
     <div class="icon-wrapper">
       <i class="devicon-c-plain"></i>
@@ -126,7 +154,7 @@
 
 <!-- Web & Integration -->
 <div class="skill-card">
-  <h3>Web & Integration</h3>
+  <h3>Web & Tools</h3>
   <div class="icon-row">
     <div class="icon-wrapper">
       <i class="devicon-html5-plain"></i>
@@ -143,6 +171,28 @@
     <div class="icon-wrapper">
       <i class="devicon-flask-original"></i>
       <span class="icon-label">Flask</span>
+    </div>
+  </div>
+</div>
+
+<div class="skill-card">
+  <h3>Core Strengths</h3>
+  <div class="icon-row">
+    <div class="icon-wrapper">
+      <i class="bi bi-people-fill"></i>
+      <span class="icon-label">Collaboration</span>
+    </div>
+    <div class="icon-wrapper">
+      <i class="bi bi-kanban-fill"></i>
+      <span class="icon-label">Coordination</span>
+    </div>
+    <div class="icon-wrapper">
+      <i class="bi bi-award-fill"></i>
+      <span class="icon-label">Leadership</span>
+    </div>
+    <div class="icon-wrapper">
+      <i class="bi bi-translate"></i>
+      <span class="icon-label">Tamil / English / Malayalam</span>
     </div>
   </div>
 </div>
@@ -242,7 +292,7 @@
 
         <!-- Certificates Section -->
         <section id="certificates" class ="section">
-          <h2 class="section-title">Certifications</h2>
+          <h2 class="section-title">Certifications & Education</h2>
 
           <!-- Inline Modal -->
           <div id="certificatePreview" class="certificate-preview">
@@ -285,8 +335,8 @@
             data-file-id="1JQ17O8yKliEXO0AyBA6_AX6_9aTQYq-0"
           >
             <div class="cert-content">
-              <h3>PCB Add-on</h3>
-              <p>Albertian Institute of Science And Technology</p>
+              <h3>PCB Add-on Course</h3>
+              <p>Albertian Institute of Science and Technology</p>
             </div>
             <a href="#" class="view-btn">></a>
           </div>
@@ -298,8 +348,8 @@
             data-file-id="1FsQ__JnEg7NMrGZK3paewXQl1TcAPuIY"
           >
             <div class="cert-content">
-              <h3>MATLAB Add-on</h3>
-              <p>Albertian Institute of Science And Technology</p>
+              <h3>MATLAB Add-on Course</h3>
+              <p>Albertian Institute of Science and Technology</p>
             </div>
             <a href="#" class="view-btn">></a>
           </div>
@@ -408,3 +458,5 @@
     <script src="script.js"></script>
   </body>
 </html>
+
+

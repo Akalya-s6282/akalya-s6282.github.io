@@ -1,0 +1,46 @@
+#about {
+  text-align: left;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+  gap: 26px;
+  align-items: start;
+}
+
+#about > div {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 30px 28px;
+}
+
+#about h2 {
+  margin-bottom: 14px;
+}
+
+#about h3 {
+  margin-top: 14px;
+  margin-bottom: 4px;
+  font-size: 1.02rem;
+  color: var(--text-main);
+}
+
+#about p {
+  color: var(--text-muted);
+}
+
+#about .leadership p {
+  color: var(--text-muted);
+}
+
+#about .about-card {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  #about {
+    grid-template-columns: 1fr;
+  }
+}

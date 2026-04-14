@@ -1,0 +1,111 @@
+.contact-container {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-card {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-card);
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  box-shadow: var(--box-shadow);
+}
+
+.contact-card i {
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  background: var(--accent);
+}
+
+.contact-card:hover i {
+  color: var(--text-on-dark);
+}
+
+.contact-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--box-shadow);
+  padding: 24px;
+  text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-bottom: 11px;
+  padding: 12px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(27, 20, 31, 0.16);
+  background: rgba(248, 241, 235, 0.8);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--theme-text-primary);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(15, 111, 255, 0.18);
+}
+
+.contact-form button {
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--text-on-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: var(--accent-strong);
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .contact-card {
+    width: 52px;
+    height: 52px;
+  }
+}

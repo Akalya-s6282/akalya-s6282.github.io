@@ -168,6 +168,8 @@ body.nav-open {
     height: 58px;
     border-radius: 18px;
     object-fit: cover;
+    /* center/crop so face is visible; tweak Y% to move face up/down */
+    object-position: 50% 28%;
     border: 2px solid rgba(255, 124, 78, 0.2);
   }
 

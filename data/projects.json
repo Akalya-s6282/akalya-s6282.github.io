@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Obstacle Avoiding Robot",
+    "description": "An autonomous robot that detects and avoids obstacles using Arduino Uno and ultrasonic sensors.",
+    "image": "Robot.png",
+    "link": "https://github.com/Akalya-s6282/tink-her-hack-3-temp"
+  },
+  {
+    "title": "Calorie Meter",
+    "description": "A Flask-based web app that estimates calories based on user input.",
+    "image": "Calorie meter.png",
+    "link": "https://github.com/Akalya-s6282/tink-her-hack-3-temp"
+  },
+  {
+    "title": "To-Do List",
+    "description": "A simple task management app with Flask backend and clean UI.",
+    "image": "Todolist.png",
+    "link": "https://github.com/Akalya-s6282/To-do-list"
+  }
+]

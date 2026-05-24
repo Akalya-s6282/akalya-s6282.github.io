@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     topNav.style.display = "";
 
-    const fromTop = mainContent.scrollTop;
+    const fromTop = window.scrollY || document.documentElement.scrollTop;
     const activeSection = [...sections].find(
       section =>
         section.offsetTop <= fromTop + 100 &&
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   let ticking = false;
-  mainContent.addEventListener("scroll", () => {
+  window.addEventListener("scroll", () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         updateNavVisibility();
@@ -270,6 +270,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   updateNavVisibility();
+
+  // Minimal recovery for inconsistent native browser scroll behavior.
+  // Only nudge after a short delay when wheel/touch occurs and page did not move.
+  (function addPageScrollRecovery() {
+    let wheelTimer = null;
+    let touchStartY = null;
+
+    const attemptNudge = delta => {
+      const prev = window.scrollY || document.documentElement.scrollTop;
+      setTimeout(() => {
+        const current = window.scrollY || document.documentElement.scrollTop;
+        if (current === prev && delta !== 0) {
+          window.scrollBy({ top: Math.sign(delta), left: 0, behavior: "auto" });
+        }
+      }, 90);
+    };
+
+    window.addEventListener("wheel", e => {
+      attemptNudge(e.deltaY);
+    }, { passive: true });
+
+    window.addEventListener("touchstart", e => {
+      if (e.touches && e.touches[0]) touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener("touchmove", e => {
+      if (touchStartY == null || !e.touches || !e.touches[0]) return;
+      const touchY = e.touches[0].clientY;
+      const delta = touchStartY - touchY;
+      touchStartY = touchY;
+      attemptNudge(delta);
+    }, { passive: true });
+
+    window.addEventListener("touchend", () => {
+      touchStartY = null;
+    }, { passive: true });
+  })();
 
   mobileBreakpoint.addEventListener("change", () => {
     closeMobileNav();

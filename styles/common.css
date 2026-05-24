@@ -151,7 +151,8 @@ body.dark-mode .theme-toggle:hover {
 .section {
   width: min(var(--content-max-width), calc(100% - 10px));
   margin: var(--section-gap) auto 0;
-  padding: 40px 34px;
+  padding: 40px 34px 40px 40px;
+  gap : 60px;
   border-radius: var(--radius-lg);
   background: var(--bg-section);
   border: 1px solid var(--border-soft);

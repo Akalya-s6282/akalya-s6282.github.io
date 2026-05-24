@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Slider
   // Data source (change to an external raw URL if you host projects elsewhere)
   const DATA_URL = "data/projects.json";
+  const CERT_DATA_URL = "data/certificates.json";
 
   // Project Modal elements (used after rendering)
   const projectModal = document.getElementById("projectModal");
@@ -40,9 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const sliderEl = document.querySelector(".slider");
       const gridEl = document.querySelector(".project-grid");
+      const funGridEl = document.querySelector(".fun-project-grid");
 
-      // Render slides
-      sliderEl.innerHTML = projects
+      const featured = projects.mainProjects || [];
+      const funProjects = projects.funProjects || [];
+      const allProjects = [...featured, ...funProjects];
+
+      // Render slides for every project (main + fun)
+      sliderEl.innerHTML = allProjects
         .map(
           p => `
         <div class="slide" data-title="${escapeHtml(p.title)}" data-description="${escapeHtml(
@@ -54,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
         )
         .join("");
 
-      // Render grid
-      gridEl.innerHTML = projects
+      // Render main project grid
+      gridEl.innerHTML = featured
         .map(
           p => `
         <div class="grid-item" data-title="${escapeHtml(p.title)}" data-description="${escapeHtml(
@@ -66,6 +72,21 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`
         )
         .join("");
+
+      // Render fun project grid
+      funGridEl.innerHTML = funProjects.length
+        ? funProjects
+            .map(
+              p => `
+        <div class="grid-item fun-item" data-title="${escapeHtml(p.title)}" data-description="${escapeHtml(
+                p.description
+              )}" data-link="${escapeHtml(p.link)}">
+          <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" />
+          <p>${escapeHtml(p.title)}</p>
+        </div>`
+            )
+            .join("")
+        : `<p class="empty-fun-grid">Add fun projects in data/projects.json under the funProjects section.</p>`;
 
       // After rendering, wire up slider and modal behavior
       const slides = document.querySelectorAll(".slide");
@@ -140,7 +161,51 @@ document.addEventListener("DOMContentLoaded", () => {
   const certLink = document.getElementById("previewCertLink");
   const certIframe = document.getElementById("previewCertIframe");
   const closeCertModal = document.getElementById("closeCertificatePreview");
-  const certCards = document.querySelectorAll(".certificate-card");
+  const certGrid = document.getElementById("certificatesGrid");
+
+  loadCertificates();
+
+  async function loadCertificates() {
+    try {
+      const res = await fetch(CERT_DATA_URL);
+      if (!res.ok) throw new Error(`Failed to load ${CERT_DATA_URL}: ${res.status}`);
+      const data = await res.json();
+
+      certGrid.innerHTML = (data.certificates || [])
+        .map(
+          cert => `
+        <div class="certificate-card" data-title="${escapeHtml(cert.title)}" data-issuer="${escapeHtml(
+            cert.issuer
+          )}" data-file-id="${escapeHtml(cert.fileId)}">
+          <div class="cert-content">
+            <h3>${escapeHtml(cert.title)}</h3>
+            <p>${escapeHtml(cert.issuer)}</p>
+          </div>
+          <a href="#" class="view-btn">></a>
+        </div>`
+        )
+        .join("");
+
+      document.querySelectorAll(".certificate-card").forEach(card => {
+        card.querySelector(".view-btn").addEventListener("click", e => {
+          e.preventDefault();
+          const fileId = card.dataset.fileId;
+          certTitle.textContent = card.dataset.title;
+          certIssuer.textContent = card.dataset.issuer;
+          certIframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
+          certLink.href = `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
+          certModal.style.display = "block";
+          certModal.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    } catch (err) {
+      console.error("Failed to load certificates:", err);
+    }
+
+    closeCertModal.addEventListener("click", () => {
+      certModal.style.display = "none";
+    });
+  }
 
   // Theme Toggle
   const themeToggle = document.getElementById("themeToggle");
@@ -210,22 +275,6 @@ document.addEventListener("DOMContentLoaded", () => {
     closeMobileNav();
     updateNavVisibility();
   });
-
-
-  // --- CERTIFICATES MODAL ---
-  certCards.forEach(card => {
-    card.querySelector(".view-btn").addEventListener("click", e => {
-      e.preventDefault();
-      const fileId = card.dataset.fileId;
-      certTitle.textContent = card.dataset.title;
-      certIssuer.textContent = card.dataset.issuer;
-      certIframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
-      certLink.href = `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
-      certModal.style.display = "block";
-      certModal.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
-  closeCertModal.addEventListener("click", () => { certModal.style.display = "none"; });
 
   // --- CONTACT FORM ---
   document.getElementById("contactForm").addEventListener("submit", e => {

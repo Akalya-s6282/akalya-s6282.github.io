@@ -1,20 +1,42 @@
-[
-  {
-    "title": "Obstacle Avoiding Robot",
-    "description": "An autonomous robot that detects and avoids obstacles using Arduino Uno and ultrasonic sensors.",
-    "image": "Robot.png",
-    "link": "https://github.com/Akalya-s6282/tink-her-hack-3-temp"
-  },
-  {
-    "title": "Calorie Meter",
-    "description": "A Flask-based web app that estimates calories based on user input.",
-    "image": "Calorie meter.png",
-    "link": "https://github.com/Akalya-s6282/tink-her-hack-3-temp"
-  },
-  {
-    "title": "To-Do List",
-    "description": "A simple task management app with Flask backend and clean UI.",
-    "image": "Todolist.png",
-    "link": "https://github.com/Akalya-s6282/To-do-list"
-  }
-]
+{
+  "mainProjects": [
+    {
+      "title": "Ceiling Rail Delivery System",
+      "description": "Ceiling Rail Delivery System is an automated food delivery system that uses a ceiling-mounted track to deliver items based on table coordinates received from a website, with live position updates and web-based ESP and rover management.",
+      "image": "CRDS.png",
+      "link": "https://github.com/Akalya-s6282/Rover"
+    },
+    {
+      "title": "Blink Board",
+      "description": "Blink Board is an assistive app for people with paralysis that uses eye blink detection to select automatically highlighted keys on a virtual keyboard, enabling hands-free communication.",
+      "image": "Blink Board.png",
+      "link": "https://github.com/Akalya-s6282/Blink_Board"
+    },
+    {
+      "title": "Obstacle Avoiding Robot",
+      "description": "An autonomous robot that detects and avoids obstacles using Arduino Uno and ultrasonic sensors.",
+      "image": "Robot.png",
+      "link": "https://github.com/Akalya-s6282/Obstacle-Avoiding-Robot"
+    },
+    {
+      "title": "Calorie Meter",
+      "description": "A Flask-based web app that estimates calories based on user input.",
+      "image": "Calorie meter.png",
+      "link": "https://github.com/Akalya-s6282/tink-her-hack-3-temp"
+    },
+    {
+      "title": "To-Do List",
+      "description": "A simple task management app with Flask backend and clean UI.",
+      "image": "Todolist.png",
+      "link": "https://github.com/Akalya-s6282/To-do-list"
+    }
+  ],
+  "funProjects": [
+    {
+      "title": "Redlight Greenlight",
+      "description": "Red Light Green Light is a head motion-controlled game built with Godot and OpenCV, where players move by tilting their head and are eliminated if they move during red light.",
+      "image": "Redlight Green light.png",
+      "link": "https://github.com/Akalya-s6282/Red-light-green-light"
+    }
+  ]
+}

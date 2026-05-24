@@ -1,0 +1,29 @@
+{
+  "certificates": [
+    {
+      "title": "Python Certification",
+      "issuer": "IBM SkillBuild",
+      "fileId": "1s3GCwqDeVQ3Wvx6pU3Hpu-yrEW4xwqgp"
+    },
+    {
+      "title": "College Level Add-on Course: PCB",
+      "issuer": "Albertian Institute of Science And Technology",
+      "fileId": "1JQ17O8yKliEXO0AyBA6_AX6_9aTQYq-0"
+    },
+    {
+      "title": "College Level Add-on Course: MATLAB",
+      "issuer": "Albertian Institute of Science And Technology",
+      "fileId": "1FsQ__JnEg7NMrGZK3paewXQl1TcAPuIY"
+    },
+    {
+      "title": "AI and ML Internship",
+      "issuer": "Retechnox Technologies",
+      "fileId": "1KADtrHLeU22stDiKfLIVgaW2DTGGJ5ep"
+    },
+    {
+      "title": "IoT Internship",
+      "issuer": "Sinro Robotics",
+      "fileId": "1HMQHxcLs08iObfNFYnwgMkGSbcOabSD4"
+    }
+  ]
+}

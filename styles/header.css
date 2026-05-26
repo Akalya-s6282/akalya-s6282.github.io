@@ -1,32 +1,34 @@
+/* Base styles */
 .top-nav {
   display: flex;
   z-index: 100;
-  width: min(980px, calc(100% - 12px));
-  padding: 12px 20px;
-  border-radius: 999px;
+  padding: 14px 24px;
   background: linear-gradient(90deg, var(--sidebar-start), var(--sidebar-end));
-  border: 1px solid rgba(255, 124, 78, 0.16);
+  border-bottom: 1px solid rgba(255, 124, 78, 0.16);
   box-shadow: var(--box-shadow);
   justify-content: center;
-  gap: 12px;
+  gap: 24px;
 }
 
-/* --- DESKTOP ONLY: Landing Page Hide & Scroll Behavior --- */
+/* --- DESKTOP ONLY: Full-Width Top Bar Behavior --- */
 @media (min-width: 769px) {
   .top-nav {
     position: fixed;
-    top: 18px;
-    left: 50%;
-    /* Start hidden: shifted up and completely transparent */
-    transform: translateX(-50%) translateY(-100px); 
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0; /* Keeps it a solid, uniform bar across the top */
+    
+    /* Start completely hidden above the viewport */
+    transform: translateY(-100%); 
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
   }
 
-  /* Smoothly slide down and fade in when active */
+  /* Snaps perfectly to the top of the screen when scrolling past landing */
   .top-nav.sticky-active {
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
   }

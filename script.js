@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   // --- DOM Elements ---
-  const sections = document.querySelectorAll(".section");
   const mainContent = document.querySelector(".main-content");
   const topNav = document.getElementById("topNav");
   const hamburger = document.getElementById("hamburger");
@@ -240,37 +239,38 @@ document.addEventListener("DOMContentLoaded", () => {
   mobileNavClose?.addEventListener("click", closeMobileNav);
   navOverlay?.addEventListener("click", closeMobileNav);
 
-  // --- NAV VISIBILITY LOGIC ---
-  const updateNavVisibility = () => {
+  document.body.classList.remove("on-landing");
+
+  // --- Scroll-Spy Navigation Visibility ---
+  const handleNavVisibility = () => {
+    // If we are on mobile, let the hamburger/sidebar logic handle everything
     if (mobileBreakpoint.matches) {
-      topNav.style.display = "flex";
+      topNav.classList.remove("sticky-active");
       return;
     }
 
-    topNav.style.display = "";
-
-    const fromTop = window.scrollY || document.documentElement.scrollTop;
-    const activeSection = [...sections].find(
-      section =>
-        section.offsetTop <= fromTop + 100 &&
-        section.offsetTop + section.offsetHeight > fromTop
-    );
-
-    topNav.style.display = activeSection?.id === "landing" ? "none" : "flex";
+    const landingSection = document.querySelector(".landing") || document.querySelector("#home"); 
+    
+    if (landingSection) {
+      const landingHeight = landingSection.offsetHeight;
+      
+      // If user scrolls past 80% of the landing page, show desktop nav
+      if (window.scrollY > landingHeight * 0.8) {
+        topNav.classList.add("sticky-active");
+      } else {
+        topNav.classList.remove("sticky-active");
+      }
+    } else {
+      if (window.scrollY > 400) {
+        topNav.classList.add("sticky-active");
+      } else {
+        topNav.classList.remove("sticky-active");
+      }
+    }
   };
 
-  let ticking = false;
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateNavVisibility();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-  updateNavVisibility();
-
+  window.addEventListener("scroll", handleNavVisibility);
+  handleNavVisibility();
   // Minimal recovery for inconsistent native browser scroll behavior.
   // Only nudge after a short delay when wheel/touch occurs and page did not move.
   (function addPageScrollRecovery() {
@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   mobileBreakpoint.addEventListener("change", () => {
     closeMobileNav();
-    updateNavVisibility();
+    document.body.classList.remove("on-landing");
   });
 
   // --- CONTACT FORM ---

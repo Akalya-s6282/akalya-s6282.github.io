@@ -1,15 +1,21 @@
 #about {
+  padding: 42px 10px;
   text-align: left;
   display: block;
   margin-bottom: 60px;
 }
 
+.about-title {
+  margin: 8px 0px 0px 18px;
+  color: var(--text-main);
+}
+
 #about .about-summary {
   /* background: var(--bg-card); */
   /* border: 1px solid rgba(255, 255, 255, 0.08); */
-  /* border-radius: 32px; */
-  padding: 34px 32px;
-  margin-bottom: 50px;
+  border-radius: 32px;
+  padding: 12px 28px;
+  margin-bottom: 32px;
 }
 
 #about h2 {
@@ -31,6 +37,7 @@
 
 .about-summary ul.about-bullets {
   margin: 0;
+  width: max-content;
   padding-left: 1.2rem;
   display: grid;
   gap: 14px;
@@ -42,14 +49,12 @@
 
 .about-right {
   display: grid;
-  gap: 32px;
+  gap: 18px;
 }
 
 .about-block {
-  padding: 32px;
-  /* gap: 60px!important; */
-  /* background: var(--bg-card); */
-  /* border: 1px solid rgba(255, 255, 255, 0.08); */
+  padding: 12px 28px;
+  border: 1px solid var(--border-soft);
   border-radius: 28px;
   box-shadow: var(--box-shadow-soft);
 }
@@ -62,7 +67,7 @@
 
 .info-card {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-soft);
   border-radius: 26px;
   padding: 26px;
   display: flex;
@@ -89,7 +94,7 @@
   padding: 8px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-soft);
   color: var(--text-muted);
   font-size: 0.86rem;
   white-space: nowrap;
@@ -116,12 +121,13 @@
     grid-template-columns: 1fr;
   }
 
-  #about > div {
-    padding: 24px;
+  #about .about-summary {
+    padding: 16px 14px;
+    margin-bottom: 24px;
   }
 
   .about-block {
-    padding: 24px;
+    padding: 9px;
   }
 
   .info-card {

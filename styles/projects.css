@@ -90,6 +90,10 @@
   border-radius: var(--radius-sm);
 }
 
+.projects{
+  margin-top: 32px;
+}
+
 .close {
   float: right;
   font-size: 24px;

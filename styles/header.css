@@ -1,10 +1,7 @@
 .top-nav {
-  display: none;
-  position: sticky;
-  top: 18px;
+  display: flex;
   z-index: 100;
   width: min(980px, calc(100% - 12px));
-  margin: 18px auto 0;
   padding: 12px 20px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--sidebar-start), var(--sidebar-end));
@@ -12,6 +9,27 @@
   box-shadow: var(--box-shadow);
   justify-content: center;
   gap: 12px;
+}
+
+/* --- DESKTOP ONLY: Landing Page Hide & Scroll Behavior --- */
+@media (min-width: 769px) {
+  .top-nav {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    /* Start hidden: shifted up and completely transparent */
+    transform: translateX(-50%) translateY(-100px); 
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Smoothly slide down and fade in when active */
+  .top-nav.sticky-active {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .top-nav a {
